@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:extensions="clr-namespace:B4.EE.DellobelI.Extensions"
+             xmlns:local="clr-namespace:B4.EE.DellobelI"
+             x:Class="B4.EE.DellobelI.Pages.MainPage"
+             NavigationPage.HasNavigationBar="False">
+    <ContentView x:Name="contentView" Padding="0,0,0,0"
+                 ControlTemplate="{StaticResource HomeTemplate}" BackgroundColor="#f7ddbb">
+        <StackLayout VerticalOptions="CenterAndExpand" >
+            
+                <StackLayout Orientation="Horizontal"  Margin="25,0,0,0" >
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer />
+                    </StackLayout.GestureRecognizers>
+                    <Image Source="{extensions:ImageResource B4.EE.DellobelI.Images.koopvtg.png}" Aspect="AspectFit"></Image>
+                    <Label Text="Aankoop" Margin="20,0,0,0" FontSize="15" TextColor="DarkSlateGray" VerticalOptions="Center"  HorizontalOptions="Start"  />
+                    <Label Text="&#10549;" FontSize="35" Margin="10,0,20,0" VerticalOptions="Center"></Label>
+                </StackLayout>
+
+            <StackLayout Orientation="Horizontal"  Margin="25,0,0,0" >
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer />
+                </StackLayout.GestureRecognizers>
+                <Image Source="{extensions:ImageResource B4.EE.DellobelI.Images.verkopvtg2.png}" Aspect="AspectFit"></Image>
+                <Label Text="Verkoop " Margin="20,0,0,0" FontSize="15"  TextColor="DarkSlateGray" VerticalOptions="Center"  HorizontalOptions="Start"  />
+                <Label Text="&#10549;" FontSize="35" Margin="10,0,20,0" VerticalOptions="Center"></Label>
+            </StackLayout>
+
+            <!--<Label Text="Welkom om de JIKAN-app in wording!" HorizontalOptions="Center" />
+            <Button Text="Verander thema" Clicked="OnButtonClicked" />-->
+        </StackLayout>
+    </ContentView>
+
+</ContentPage>

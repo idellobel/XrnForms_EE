@@ -5,6 +5,31 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\clock.png" />
+    <None Remove="Images\datum.png" />
+    <None Remove="Images\Home.png" />
+    <None Remove="Images\JapJik2.png" />
+    <None Remove="Images\JikanHead.png" />
+    <None Remove="Images\kaart.png" />
+    <None Remove="Images\koopvtg.png" />
+    <None Remove="Images\statistiek.png" />
+    <None Remove="Images\verkopvtg2.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Images\clock.png" />
+    <EmbeddedResource Include="Images\datum.png" />
+    <EmbeddedResource Include="Images\Home.png" />
+    <EmbeddedResource Include="Images\JapJik2.png" />
+    <EmbeddedResource Include="Images\JikanHead.png" />
+    <EmbeddedResource Include="Images\kaart.png" />
+    <EmbeddedResource Include="Images\koopvtg.png" />
+    <EmbeddedResource Include="Images\statistiek.png" />
+    <EmbeddedResource Include="Images\verkopvtg2.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FreshMvvm" Version="2.2.3" />
     <PackageReference Include="Xamarin.Forms" Version="2.5.0.121934" />
   </ItemGroup>
 
@@ -12,8 +37,34 @@
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="App.xaml.cs">
       <DependentUpon>*.xaml</DependentUpon>
     </Compile>
-    <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="MainPage.xaml.cs">
-      <DependentUpon>*.xaml</DependentUpon>
-    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Domain\Models\" />
+    <Folder Include="Domain\Services\Abstract\" />
+    <Folder Include="Domain\Services\Mock\" />
+    <Folder Include="Domain\Services\SQLite\" />
+    <Folder Include="Domain\Validators\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Pages\AankoopPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\ClockPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\DatumPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\KaartPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\MainPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Pages\StatistiekPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

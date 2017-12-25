@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:extensions="clr-namespace:B4.EE.DellobelI.Extensions"
+             x:Class="B4.EE.DellobelI.Pages.DatumPage"
+              NavigationPage.HasNavigationBar="False">
+    <ContentView x:Name="contentView" Padding="0,0,0,0"
+                 ControlTemplate="{StaticResource DatumTemplate}" BackgroundColor="#f7ddbb">
+    </ContentView>
+</ContentPage>

@@ -1,8 +1,390 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:extensions="clr-namespace:B4.EE.DellobelI.Extensions"
              x:Class="B4.EE.DellobelI.App">
 	<Application.Resources>
+        <ResourceDictionary>
+        <!--ControlTemplate Hompagina-->
+            <ControlTemplate x:Key="HomeTemplate">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.1*" />
+                        <RowDefinition Height="0.8*" />
+                        <RowDefinition Height="0.1*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.05*" />
+                        <ColumnDefinition Width="0.95*" />
+                    </Grid.ColumnDefinitions>
+                    
+                    <StackLayout Grid.Row="0" Grid.ColumnSpan="2"  >
+                        <StackLayout Orientation="Horizontal" VerticalOptions="Center" BackgroundColor="Teal">
+                            <StackLayout  Orientation="Horizontal"  Margin="25,10,0,10">
+                                <Image Source="{extensions:ImageResource B4.EE.DellobelI.Images.JikanHead.png}" Aspect="Fill"></Image>
+                                <Label Grid.Column="1" Text="JI-KAN" TextColor="#ff3399" FontSize="25" Margin="20,0,0,0" VerticalOptions="Start" />
+                                <Image Source="{extensions:ImageResource B4.EE.DellobelI.Images.JapJik2.png}" HeightRequest="40" 
+                                       Margin="20,0,0,0" Aspect="AspectFit" VerticalOptions="Start"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+
+                    <ContentPresenter Grid.Row="1" Grid.ColumnSpan="2"  />
+                    
+                    <StackLayout Grid.Row="2" Grid.ColumnSpan="2" BackgroundColor="Teal" >
+                        <ScrollView Orientation="Horizontal">
+                            <StackLayout Orientation="Horizontal" VerticalOptions="Start" >
+
+                                <StackLayout Orientation="Horizontal"  Margin="25,0,0,0" BackgroundColor="#003333" >
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnHomeTapped" />
+                                    </StackLayout.GestureRecognizers>
+                                    <Image Source="{extensions:ImageResource B4.EE.DellobelI.Images.Home.png}" Aspect="AspectFit"></Image>
+                                    <Label Grid.Row="2" Grid.Column="1" Text="home" TextColor="White" VerticalOptions="Center"  HorizontalOptions="FillAndExpand"  />
+                                </StackLayout>
+                                
+                                <StackLayout Orientation="Horizontal"  Margin="25,10,0,10">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnKaartTapped"/>
+                                    </StackLayout.GestureRecognizers>
+                                    <Image Source="{extensions:ImageResource B4.EE.DellobelI.Images.kaart.png}" Aspect="AspectFit"></Image>
+                                    <Label Grid.Row="2" Grid.Column="1" Text="kaart" TextColor="White" VerticalOptions="Center"  HorizontalOptions="FillAndExpand"  />
+                                </StackLayout>
+                                
+                                <StackLayout Orientation="Horizontal" Margin="25,10,0,10" >
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnClockTapped"/>
+                                    </StackLayout.GestureRecognizers>
+                                    <Image Source="{extensions:ImageResource B4.EE.DellobelI.Images.clock.png}" Aspect="AspectFit" />
+                                    <Label Grid.Row="2" Grid.Column="1" Text="Uren" TextColor="White" VerticalOptions="Center"  HorizontalOptions="FillAndExpand" />
+                                </StackLayout>
+                                
+                                <StackLayout Orientation="Horizontal" Margin="25,10,0,10" >
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnStatistiekTapped"/>
+                                    </StackLayout.GestureRecognizers>
+                                    <Image Source="{extensions:ImageResource B4.EE.DellobelI.Images.statistiek.png}" Aspect="AspectFit"/>
+                                    <Label Grid.Row="2" Grid.Column="1" Text="Statistiek" TextColor="White" VerticalOptions="Center"  HorizontalOptions="FillAndExpand"  />
+                                </StackLayout>
+                                
+                                <StackLayout Orientation="Horizontal" Margin="25,10,25,10" >
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnDatumTapped"/>
+                                    </StackLayout.GestureRecognizers>
+                                    <Image Source="{extensions:ImageResource B4.EE.DellobelI.Images.datum.png}" Aspect="AspectFit"/>
+                                    <Label Grid.Row="2" Grid.Column="1" Text="Datum" TextColor="White" VerticalOptions="Center" HorizontalOptions="FillAndExpand"  />
+                                </StackLayout>
+                        
+                          </StackLayout>
+                        </ScrollView>
+                    </StackLayout>
+                </Grid>
+            </ControlTemplate>
+        <!--ControlTemplate Kaartpagina-->
+            <ControlTemplate x:Key="KaartTemplate">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.1*" />
+                        <RowDefinition Height="0.8*" />
+                        <RowDefinition Height="0.1*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.05*" />
+                        <ColumnDefinition Width="0.95*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackLayout Grid.Row="0" Grid.ColumnSpan="2"  >
+                        <StackLayout Orientation="Horizontal" VerticalOptions="Center" BackgroundColor="Teal">
+                            <StackLayout  Orientation="Horizontal"  Margin="25,10,0,10">
+                                <Image Source="{extensions:ImageResource B4.EE.DellobelI.Images.JikanHead.png}" Aspect="Fill"></Image>
+                                <Label Grid.Column="1" Text="JI-KAN" TextColor="#ff3399" FontSize="25" Margin="20,0,0,0" VerticalOptions="Start" />
+                                <Image Source="{extensions:ImageResource B4.EE.DellobelI.Images.JapJik2.png}" HeightRequest="40" 
+                                       Margin="20,0,0,0" Aspect="AspectFit" VerticalOptions="Start"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+
+                    <ContentPresenter Grid.Row="1" Grid.ColumnSpan="2"  />
+
+                    <StackLayout Grid.Row="2" Grid.ColumnSpan="2" BackgroundColor="Teal" >
+                        <ScrollView Orientation="Horizontal">
+                            <StackLayout Orientation="Horizontal" VerticalOptions="Start" >
+
+                                <StackLayout Orientation="Horizontal"  Margin="25,10,0,10"  >
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnHomeTapped" />
+                                    </StackLayout.GestureRecognizers>
+                                    <Image Source="{extensions:ImageResource B4.EE.DellobelI.Images.Home.png}" Aspect="AspectFit"></Image>
+                                    <Label Grid.Row="2" Grid.Column="1" Text="home" TextColor="White" VerticalOptions="Center"  HorizontalOptions="FillAndExpand"  />
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal"  Margin="25,0,0,0" BackgroundColor="#003333">
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnKaartTapped"/>
+                                    </StackLayout.GestureRecognizers>
+                                    <Image Source="{extensions:ImageResource B4.EE.DellobelI.Images.kaart.png}" Aspect="AspectFit"></Image>
+                                    <Label Grid.Row="2" Grid.Column="1" Text="kaart" TextColor="White" VerticalOptions="Center"  HorizontalOptions="FillAndExpand"  />
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal" Margin="25,10,0,10" >
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnClockTapped"/>
+                                    </StackLayout.GestureRecognizers>
+                                    <Image Source="{extensions:ImageResource B4.EE.DellobelI.Images.clock.png}" Aspect="AspectFit" />
+                                    <Label Grid.Row="2" Grid.Column="1" Text="Uren" TextColor="White" VerticalOptions="Center"  HorizontalOptions="FillAndExpand" />
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal" Margin="25,10,0,10" >
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnStatistiekTapped"/>
+                                    </StackLayout.GestureRecognizers>
+                                    <Image Source="{extensions:ImageResource B4.EE.DellobelI.Images.statistiek.png}" Aspect="AspectFit"/>
+                                    <Label Grid.Row="2" Grid.Column="1" Text="Statistiek" TextColor="White" VerticalOptions="Center"  HorizontalOptions="FillAndExpand"  />
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal" Margin="25,10,25,10" >
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnDatumTapped"/>
+                                    </StackLayout.GestureRecognizers>
+                                    <Image Source="{extensions:ImageResource B4.EE.DellobelI.Images.datum.png}" Aspect="AspectFit"/>
+                                    <Label Grid.Row="2" Grid.Column="1" Text="Datum" TextColor="White" VerticalOptions="Center" HorizontalOptions="FillAndExpand"  />
+                                </StackLayout>
+
+                            </StackLayout>
+                        </ScrollView>
+                    </StackLayout>
+                </Grid>
+            </ControlTemplate>
+       <!--ControlTemplate Clockpagina-->
+            <ControlTemplate x:Key="ClockTemplate">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.1*" />
+                        <RowDefinition Height="0.8*" />
+                        <RowDefinition Height="0.1*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.05*" />
+                        <ColumnDefinition Width="0.95*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackLayout Grid.Row="0" Grid.ColumnSpan="2"  >
+                        <StackLayout Orientation="Horizontal" VerticalOptions="Center" BackgroundColor="Teal">
+                            <StackLayout  Orientation="Horizontal"  Margin="25,10,0,10">
+                                <Image Source="{extensions:ImageResource B4.EE.DellobelI.Images.JikanHead.png}" Aspect="Fill"></Image>
+                                <Label Grid.Column="1" Text="JI-KAN" TextColor="#ff3399" FontSize="25" Margin="20,0,0,0" VerticalOptions="Start" />
+                                <Image Source="{extensions:ImageResource B4.EE.DellobelI.Images.JapJik2.png}" HeightRequest="40" 
+                                       Margin="20,0,0,0" Aspect="AspectFit" VerticalOptions="Start"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+
+                    <ContentPresenter Grid.Row="1" Grid.ColumnSpan="2"  />
+
+                    <StackLayout Grid.Row="2" Grid.ColumnSpan="2" BackgroundColor="Teal" >
+                        <ScrollView Orientation="Horizontal">
+                            <StackLayout Orientation="Horizontal" VerticalOptions="Start" >
+
+                                <StackLayout Orientation="Horizontal"  Margin="25,10,0,10"  >
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnHomeTapped" />
+                                    </StackLayout.GestureRecognizers>
+                                    <Image Source="{extensions:ImageResource B4.EE.DellobelI.Images.Home.png}" Aspect="AspectFit"></Image>
+                                    <Label Grid.Row="2" Grid.Column="1" Text="home" TextColor="White" VerticalOptions="Center"  HorizontalOptions="FillAndExpand"  />
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal"  Margin="25,10,0,10" >
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnKaartTapped"/>
+                                    </StackLayout.GestureRecognizers>
+                                    <Image Source="{extensions:ImageResource B4.EE.DellobelI.Images.kaart.png}" Aspect="AspectFit"></Image>
+                                    <Label Grid.Row="2" Grid.Column="1" Text="kaart" TextColor="White" VerticalOptions="Center"  HorizontalOptions="FillAndExpand"  />
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal" Margin="25,0,0,0" BackgroundColor="#003333" >
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnClockTapped"/>
+                                    </StackLayout.GestureRecognizers>
+                                    <Image Source="{extensions:ImageResource B4.EE.DellobelI.Images.clock.png}" Aspect="AspectFit" />
+                                    <Label Grid.Row="2" Grid.Column="1" Text="Uren" TextColor="White" VerticalOptions="Center"  HorizontalOptions="FillAndExpand" />
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal" Margin="25,10,0,10" >
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnStatistiekTapped"/>
+                                    </StackLayout.GestureRecognizers>
+                                    <Image Source="{extensions:ImageResource B4.EE.DellobelI.Images.statistiek.png}" Aspect="AspectFit"/>
+                                    <Label Grid.Row="2" Grid.Column="1" Text="Statistiek" TextColor="White" VerticalOptions="Center"  HorizontalOptions="FillAndExpand"  />
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal" Margin="25,10,25,10" >
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnDatumTapped"/>
+                                    </StackLayout.GestureRecognizers>
+                                    <Image Source="{extensions:ImageResource B4.EE.DellobelI.Images.datum.png}" Aspect="AspectFit"/>
+                                    <Label Grid.Row="2" Grid.Column="1" Text="Datum" TextColor="White" VerticalOptions="Center" HorizontalOptions="FillAndExpand"  />
+                                </StackLayout>
+
+                            </StackLayout>
+                        </ScrollView>
+                    </StackLayout>
+                </Grid>
+            </ControlTemplate>
+            <!--ControlTemplate Statistiekpagina-->
+            <ControlTemplate x:Key="StatistiekTemplate">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.1*" />
+                        <RowDefinition Height="0.8*" />
+                        <RowDefinition Height="0.1*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.05*" />
+                        <ColumnDefinition Width="0.95*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackLayout Grid.Row="0" Grid.ColumnSpan="2"  >
+                        <StackLayout Orientation="Horizontal" VerticalOptions="Center" BackgroundColor="Teal">
+                            <StackLayout  Orientation="Horizontal"  Margin="25,10,0,10">
+                                <Image Source="{extensions:ImageResource B4.EE.DellobelI.Images.JikanHead.png}" Aspect="Fill"></Image>
+                                <Label Grid.Column="1" Text="JI-KAN" TextColor="#ff3399" FontSize="25" Margin="20,0,0,0" VerticalOptions="Start" />
+                                <Image Source="{extensions:ImageResource B4.EE.DellobelI.Images.JapJik2.png}" HeightRequest="40" 
+                                       Margin="20,0,0,0" Aspect="AspectFit" VerticalOptions="Start"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+
+                    <ContentPresenter Grid.Row="1" Grid.ColumnSpan="2"  />
+
+                    <StackLayout Grid.Row="2" Grid.ColumnSpan="2" BackgroundColor="Teal" >
+                        <ScrollView Orientation="Horizontal">
+                            <StackLayout Orientation="Horizontal" VerticalOptions="Start" >
+
+                                <StackLayout Orientation="Horizontal"  Margin="25,10,0,10"  >
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnHomeTapped" />
+                                    </StackLayout.GestureRecognizers>
+                                    <Image Source="{extensions:ImageResource B4.EE.DellobelI.Images.Home.png}" Aspect="AspectFit"></Image>
+                                    <Label Grid.Row="2" Grid.Column="1" Text="home" TextColor="White" VerticalOptions="Center"  HorizontalOptions="FillAndExpand"  />
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal"  Margin="25,0,0,0" >
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnKaartTapped"/>
+                                    </StackLayout.GestureRecognizers>
+                                    <Image Source="{extensions:ImageResource B4.EE.DellobelI.Images.kaart.png}" Aspect="AspectFit"></Image>
+                                    <Label Grid.Row="2" Grid.Column="1" Text="kaart" TextColor="White" VerticalOptions="Center"  HorizontalOptions="FillAndExpand"  />
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal" Margin="25,10,0,10" >
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnClockTapped"/>
+                                    </StackLayout.GestureRecognizers>
+                                    <Image Source="{extensions:ImageResource B4.EE.DellobelI.Images.clock.png}" Aspect="AspectFit" />
+                                    <Label Grid.Row="2" Grid.Column="1" Text="Uren" TextColor="White" VerticalOptions="Center"  HorizontalOptions="FillAndExpand" />
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal" Margin="25,0,0,0"  BackgroundColor="#003333" >
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnStatistiekTapped"/>
+                                    </StackLayout.GestureRecognizers>
+                                    <Image Source="{extensions:ImageResource B4.EE.DellobelI.Images.statistiek.png}" Aspect="AspectFit"/>
+                                    <Label Grid.Row="2" Grid.Column="1" Text="Statistiek" TextColor="White" VerticalOptions="Center"  HorizontalOptions="FillAndExpand"  />
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal" Margin="25,10,25,10" >
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnDatumTapped"/>
+                                    </StackLayout.GestureRecognizers>
+                                    <Image Source="{extensions:ImageResource B4.EE.DellobelI.Images.datum.png}" Aspect="AspectFit"/>
+                                    <Label Grid.Row="2" Grid.Column="1" Text="Datum" TextColor="White" VerticalOptions="Center" HorizontalOptions="FillAndExpand"  />
+                                </StackLayout>
+
+                            </StackLayout>
+                        </ScrollView>
+                    </StackLayout>
+                </Grid>
+            </ControlTemplate>
+            <!--ControlTemplate Datumpagina-->
+            <ControlTemplate x:Key="DatumTemplate">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.1*" />
+                        <RowDefinition Height="0.8*" />
+                        <RowDefinition Height="0.1*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.05*" />
+                        <ColumnDefinition Width="0.95*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackLayout Grid.Row="0" Grid.ColumnSpan="2"  >
+                        <StackLayout Orientation="Horizontal" VerticalOptions="Center" BackgroundColor="Teal">
+                            <StackLayout  Orientation="Horizontal"  Margin="25,10,0,10">
+                                <Image Source="{extensions:ImageResource B4.EE.DellobelI.Images.JikanHead.png}" Aspect="Fill"></Image>
+                                <Label Grid.Column="1" Text="JI-KAN" TextColor="#ff3399" FontSize="25" Margin="20,0,0,0" VerticalOptions="Start" />
+                                <Image Source="{extensions:ImageResource B4.EE.DellobelI.Images.JapJik2.png}" HeightRequest="40" 
+                                       Margin="20,0,0,0" Aspect="AspectFit" VerticalOptions="Start"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+
+                    <ContentPresenter Grid.Row="1" Grid.ColumnSpan="2"  />
+
+                    <StackLayout Grid.Row="2" Grid.ColumnSpan="2" BackgroundColor="Teal" >
+                        <ScrollView Orientation="Horizontal">
+                            <StackLayout Orientation="Horizontal" VerticalOptions="Start" >
+
+                                <StackLayout Orientation="Horizontal"  Margin="25,10,0,10"  >
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnHomeTapped" />
+                                    </StackLayout.GestureRecognizers>
+                                    <Image Source="{extensions:ImageResource B4.EE.DellobelI.Images.Home.png}" Aspect="AspectFit"></Image>
+                                    <Label Grid.Row="2" Grid.Column="1" Text="home" TextColor="White" VerticalOptions="Center"  HorizontalOptions="FillAndExpand"  />
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal"  Margin="25,10,0,10" >
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnKaartTapped"/>
+                                    </StackLayout.GestureRecognizers>
+                                    <Image Source="{extensions:ImageResource B4.EE.DellobelI.Images.kaart.png}" Aspect="AspectFit"></Image>
+                                    <Label Grid.Row="2" Grid.Column="1" Text="kaart" TextColor="White" VerticalOptions="Center"  HorizontalOptions="FillAndExpand"  />
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal" Margin="25,10,0,10" >
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnClockTapped"/>
+                                    </StackLayout.GestureRecognizers>
+                                    <Image Source="{extensions:ImageResource B4.EE.DellobelI.Images.clock.png}" Aspect="AspectFit" />
+                                    <Label Grid.Row="2" Grid.Column="1" Text="Uren" TextColor="White" VerticalOptions="Center"  HorizontalOptions="FillAndExpand" />
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal" Margin="25,10,0,10"  >
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnStatistiekTapped"/>
+                                    </StackLayout.GestureRecognizers>
+                                    <Image Source="{extensions:ImageResource B4.EE.DellobelI.Images.statistiek.png}" Aspect="AspectFit"/>
+                                    <Label Grid.Row="2" Grid.Column="1" Text="Statistiek" TextColor="White" VerticalOptions="Center"  HorizontalOptions="FillAndExpand"  />
+                                </StackLayout>
+
+                                <StackLayout Orientation="Horizontal" Margin="25,0,25,0" BackgroundColor="#003333" >
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnDatumTapped"/>
+                                    </StackLayout.GestureRecognizers>
+                                    <Image Source="{extensions:ImageResource B4.EE.DellobelI.Images.datum.png}" Aspect="AspectFit"/>
+                                    <Label Grid.Row="2" Grid.Column="1" Text="Datum" TextColor="White" VerticalOptions="Center" HorizontalOptions="FillAndExpand"  />
+                                </StackLayout>
+
+                            </StackLayout>
+                        </ScrollView>
+                    </StackLayout>
+                </Grid>
+            </ControlTemplate>
+
+            <!--			<Style TargetType="ContentView">
+				<Setter Property="ControlTemplate" Value="{StaticResource TealTemplate}" />
+			</Style>-->
+        </ResourceDictionary>
 
 		<!-- Application resource dictionary -->
 

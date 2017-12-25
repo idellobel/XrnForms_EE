@@ -1,0 +1,214 @@
+﻿
+@{
+    ViewBag.Title = "AutoModellen";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<article id="app" class="row">
+    <header class="col-md-4">
+        <h3>{{ message }}</h3> @*Vue mustache*@
+        <nav>
+            <ul class="list-group">
+                <li v-for="carmodel in carmodels" v-on:click="fetchCarModelDetails(carmodel)"
+                    :class="getCarModelClass(carmodel)" style="cursor:pointer">
+                    <span class="carModelMerkName">{{ carmodel.MerkName}}</span>
+                    <span class="carModelTitle">{{ carmodel.ModelNaam}}</span>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <article v-if="currentCarModel" class="col-md-4">
+        <h3>Gegevens</h3>
+        <div v-if="editMode" class="form-group">
+            <table cellpadding="8em">
+                <tr>
+                    <td>Merk:</td>
+                    <td>
+                        <select v-model="currentCarModel.MerkId" class="form-control">
+                            <option v-for="merk in merken" v-bind:value="merk.Id">{{ merk.Name}}</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>Model:</td>
+
+                    <td><input v-model="currentCarModel.ModelNaam" class="form-control" /></td>
+                </tr>
+
+                <tr>
+                    <td>Nieuw Waarde in €:</td>
+                    <td><input v-model="currentCarModel.Prijs" class="form-control" /></td>
+                </tr>
+            </table>
+            <button v-on:click="save" class="btn btn-primary">Save</button>
+        </div>
+
+        <div v-else>
+            <table cellpadding="8em">
+                <tr>
+                    <td>Merk:</td>
+                    <td class="carModelMerkName">{{ currentCarModel.MerkName}}</td>
+                </tr>
+                <tr>
+                    <td>Model:</td>
+                    <td class="carModelTitle">{{ currentCarModel.ModelNaam}}</td>
+                </tr>
+                <tr>
+                    <td>Nieuw Waarde in €:</td>
+                    <td>{{ currentCarModel.Prijs}}</td>
+                </tr>
+            </table>
+            <button v-on:click="toEditMode(true)" class="btn btn-primary">Edit</button>
+            <button v-on:click="toEditMode(false)" class="btn btn-warning">New</button>
+            <button v-on:click="deleteCarModel()" class="btn btn-danger">Delete</button>
+        </div>
+    </article>
+
+</article>
+
+
+
+
+
+
+@section scripts{
+
+    <script src="~/Scripts/vue.js"></script>
+    <script>
+        var apiURL = '/api/'
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Loading cars....',
+                carmodels: null,
+                currentCarModel: null,
+                merken: null,
+                editMode: false,
+                isEdit: false
+            },
+            created: function () {
+                var self = this;
+                this.fetchCarModels();
+                this.fetchMerken();
+
+            },
+            methods: {
+                fetchCarModels: function () {
+                    self = this;
+                    fetch(`${apiURL}CarModels`)
+                        .then(res => res.json())
+                        .then(function (carmodels) {
+                            carmodels.forEach(function (carmodel, i) {
+                                carmodel.isActive = false;
+                            });
+                            self.carmodels = carmodels;
+                            self.message = 'Overzichtslijst'
+                            if (self.carmodels.length > 0) {
+                                self.fetchCarModelDetails(self.carmodels[0]);
+                            }
+                        })
+                        .catch(err => console.error('Fout:' + err));
+                },
+                fetchCarModelDetails: function (carmodel) {
+                    self = this;
+                    fetch(`${apiURL}CarModels/${carmodel.Id}`)
+                        .then(res => res.json())
+                        .then(function (res) {
+                            self.currentCarModel = res;
+                            self.carmodels.forEach(function (carmodel, i) { carmodel.isActive = false; })
+                            carmodel.isActive = true;
+                        })
+                        .catch(err => console.error('Fout:' + err));
+                },
+                getCarModelClass: function (carmodel) {
+                    if (carmodel.isActive) return 'list-group-item active';
+                    return 'list-group-item';
+                },
+                fetchMerken: function () {
+                    self = this;
+                    fetch(`${apiURL}Merken`)
+                        .then(res => res.json())
+                        .then(function (res) {
+                            self.merken = res;
+                        })
+                        .catch(err => console.error('Fout: ' + err));
+                },
+                toEditMode: function (isEdit) {
+                    self = this;
+                    this.editMode = true;
+                    this.isEdit = isEdit;
+                    if (!isEdit) {
+                        self.currentCarModel = { Id: 0, ModelNaam: '', MerkId:0, Prijs: 0}
+                    }
+                },
+                save: function () {
+                    var self = this
+                    // opslaan - ajax configuratie
+                    var ajaxHeaders = new Headers();
+                    ajaxHeaders.append("Content-Type", "application/json");
+                    var ajaxConfig = {
+                        method: 'PUT',
+                        body: JSON.stringify(self.currentBook),
+                        headers: ajaxHeaders
+                    }
+                    // opslaan: edit of toevoegen
+                    if (self.isEdit) {
+                        var myRequest = new Request(`${apiURL}CarModels/${self.currentCarModel.Id}`, ajaxConfig)
+                    }
+                    else {
+                        ajaxConfig.method = 'POST';
+                        var myRequest = new Request(`${apiURL}CarModels/`, ajaxConfig)
+                    }
+                    fetch(myRequest)
+                        .then(res => res.json())
+                        .then(function (res) {
+                            // GUI Aanpassen - wat extra taakjes doordat in lijst BookDTO's staan en in detailweergave BookDetailDTO getoond wordt
+                            // nieuwe auteursnaam ophalen
+                            theMerk = self.merken.filter(merk => (merk.Id === self.currentCarModel.MerkId))[0];
+                            self.currentCarModel.MerkName = theMerk.Name;
+                            if (self.isEdit) {
+                                // het geupdate boek uit de boekenlijst ophalen
+                                theCarModel = self.carmodels.filter(carmodel => (carmodel.Id === self.currentCarModel.Id))[0];
+                                // gegevens aanpassen
+                                theCarModel.ModelNaam = self.currentCarModel.ModelNaam;
+                                theMerk.MerkName = theMerk.Name;
+                            } else {
+                                // boek toevoegen aan de lijst - we voegen eigenlijk een bookdetailDTO to ipv bookDTO
+                                console.log(res);
+                                self.currentCarModel.Id = res.Id;
+                                self.carmodels.push(self.currentCarModel);
+                                self.fetchCarModelDetails(self.carmodels[self.carmodels.length - 1]);
+                            }
+                            self.editMode = false;
+                        })
+                        .catch(err => console.error('Fout: ' + err));;
+                },
+                deleteCarModel: function () {
+                    self = this;
+                    fetch(`${apiURL}CarModels/${self.currentCarModel.Id}`, { method: 'DELETE' })
+                        .then(res => res.json())
+                        .then(function (res) {
+                            // carmodel verwijderen uit de lijst
+                            self.carmodels.forEach(function (carmodel, i) {
+                                if (carmodel.Id == self.currentCarModel.Id) {
+                                    self.carmodels.splice(i, 1);
+                                    return;
+                                }
+                            });
+                            // eerste boek selecteren
+                            if (self.carmodels.length > 0)
+                                self.fetchCarModelDetails(self.carmodels[0]);
+                        })
+                        .catch(err => console.error('Fout: ' + err));
+                },
+            }
+        });
+      
+
+    </script>
+}
+
