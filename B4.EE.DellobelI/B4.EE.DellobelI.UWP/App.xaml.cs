@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Xamarin;
 
 namespace B4.EE.DellobelI.UWP
 {
@@ -53,6 +54,7 @@ namespace B4.EE.DellobelI.UWP
                 rootFrame.NavigationFailed += OnNavigationFailed;
 
                 Xamarin.Forms.Forms.Init(e);
+                FormsMaps.Init("FJL79AyKz5Ue15X0JADo ~ YOwiq98NP67_TBhxIKymqg ~ AlvDu6HVhPoakwnVQY-2hgfNyvCWBy5wmEo5WKsLrjdztZ4gDRiLnSudgKn3Y57F ");
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {

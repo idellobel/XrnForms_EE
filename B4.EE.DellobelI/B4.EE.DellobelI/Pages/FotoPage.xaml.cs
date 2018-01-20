@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace B4.EE.DellobelI.Pages
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class DatumPage : ContentPage
+	public partial class FotoPage : ContentPage
 	{
-		public DatumPage ()
+		public FotoPage ()
 		{
 			InitializeComponent ();
 		}

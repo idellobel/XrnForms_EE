@@ -1,4 +1,8 @@
-﻿using B4.EE.DellobelI.ViewModels;
+﻿using B4.EE.DellobelI.Domain.Services.Abstract;
+using B4.EE.DellobelI.Domain.Services.Mock;
+
+using B4.EE.DellobelI.Pages;
+using B4.EE.DellobelI.ViewModels;
 using FreshMvvm;
 using System;
 
@@ -11,6 +15,16 @@ namespace B4.EE.DellobelI
 		public App ()
 		{
 			InitializeComponent();
+
+            FreshIOC.Container.Register<IKlantenService>(new KlantenInMemoryService());
+            FreshIOC.Container.Register<IVoertuigenService>(new VoertuigenInMemoryService());
+            FreshIOC.Container.Register<IUrenService>(new UrenInMemoryService());
+           
+
+            //register dependencies
+            FreshIOC.Container.Register<TTextfileService>(DependencyService.Get<TTextfileService>());
+            FreshIOC.Container.Register<ISoundPlayer>(DependencyService.Get<ISoundPlayer>());
+            FreshIOC.Container.Register<IEmailService>(DependencyService.Get<IEmailService>());
 
             //MainPage = new B4.EE.DellobelI.Pages.MainPage();
             MainPage = new FreshNavigationContainer(FreshPageModelResolver.ResolvePageModel<MainViewModel>());
@@ -30,35 +44,6 @@ namespace B4.EE.DellobelI
 		{
 			// Handle when your app resumes
 		}
-        private void OnHomeTapped(object sender, EventArgs e)
-        {
-            //await CoreMethods.PushPageModel<MainViewModel>(true);
-            MainPage = new FreshNavigationContainer(FreshPageModelResolver.ResolvePageModel<MainViewModel>());
-
-        }
-        private void OnKaartTapped(object sender, EventArgs e)
-        {
-            //await CoreMethods.PushPageModel<MainViewModel>(true);
-            MainPage = new FreshNavigationContainer(FreshPageModelResolver.ResolvePageModel<KaartViewModel>());
-
-        }
-        private void OnClockTapped(object sender, EventArgs e)
-        {
-            //await CoreMethods.PushPageModel<MainViewModel>(true);
-            MainPage = new FreshNavigationContainer(FreshPageModelResolver.ResolvePageModel<ClockViewModel>());
-
-        }
-        private void OnStatistiekTapped(object sender, EventArgs e)
-        {
-            //await CoreMethods.PushPageModel<MainViewModel>(true);
-            MainPage = new FreshNavigationContainer(FreshPageModelResolver.ResolvePageModel<StatistiekViewModel>());
-
-        }
-        private void OnDatumTapped(object sender, EventArgs e)
-        {
-            //await CoreMethods.PushPageModel<MainViewModel>(true);
-            MainPage = new FreshNavigationContainer(FreshPageModelResolver.ResolvePageModel<DatumViewModel>());
-
-        }
+       
     }
 }
