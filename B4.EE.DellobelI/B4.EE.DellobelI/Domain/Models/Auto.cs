@@ -50,7 +50,7 @@ namespace B4.EE.DellobelI.Domain.Models
         [ForeignKey(typeof(Voertuigen))]
         public int VoertuigenId { get; set; }
 
-        [OneToOne(nameof(VoertuigenId), CascadeOperations = CascadeOperation.CascadeRead)]
+        [ManyToOne(nameof(VoertuigenId))]
         public Voertuigen Voertuigen { get; set; }
     }
 

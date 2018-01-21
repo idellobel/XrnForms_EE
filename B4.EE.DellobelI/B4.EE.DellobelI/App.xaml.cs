@@ -1,10 +1,7 @@
 ﻿using B4.EE.DellobelI.Domain.Services.Abstract;
 using B4.EE.DellobelI.Domain.Services.Mock;
-
-using B4.EE.DellobelI.Pages;
 using B4.EE.DellobelI.ViewModels;
 using FreshMvvm;
-using System;
 
 using Xamarin.Forms;
 
@@ -19,7 +16,10 @@ namespace B4.EE.DellobelI
             FreshIOC.Container.Register<IKlantenService>(new KlantenInMemoryService());
             FreshIOC.Container.Register<IVoertuigenService>(new VoertuigenInMemoryService());
             FreshIOC.Container.Register<IUrenService>(new UrenInMemoryService());
-           
+
+            //FreshIOC.Container.Register<IKlantenService>(new AppKlantenSQLiteService());
+            //FreshIOC.Container.Register<IVoertuigenService>(new VoertuigenSQLiteService());
+            //FreshIOC.Container.Register<IUrenService>(new UrenSQLiteService());
 
             //register dependencies
             FreshIOC.Container.Register<TTextfileService>(DependencyService.Get<TTextfileService>());

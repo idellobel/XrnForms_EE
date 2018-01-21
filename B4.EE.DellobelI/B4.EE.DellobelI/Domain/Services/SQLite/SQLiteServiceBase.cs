@@ -3,7 +3,6 @@ using B4.EE.DellobelI.Domain.Services.Abstract;
 using SQLite.Net;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using Xamarin.Forms;
 
 namespace B4.EE.DellobelI.Domain.Services.SQLite
@@ -35,8 +34,8 @@ namespace B4.EE.DellobelI.Domain.Services.SQLite
 
             //seed
 
-            if (connection.Table<Voertuigen>().Count() == 0)
-            {
+            //if (connection.Table<Voertuigen>().Count() == 0)
+            //{
                 // only insert the data if it doesn't already exist
 
                 var voertuigen = new List<Voertuigen>
@@ -181,168 +180,168 @@ namespace B4.EE.DellobelI.Domain.Services.SQLite
                 connection.InsertOrReplaceAll(voertuigen[3].Autoos);
 
                 var klanten = new List<Klant>
-            {
-                new Klant{
-                    Id = new Guid(),
-                    Naam= "Pauwels Paul",
-                    Adres = "Doornstraat",
-                    Postnummer= 8670,
-                    Woonplaats = "Oostduinkerke",
-                    Telefoonnummer= "058594566",
-                    Email= "paul.pauwels@gmail.com",
-                    KlantStatus = KlantStatus.Verkoper,
-                    AutoId = 1
-               },
-                new Klant{
-                    Id = new Guid(),
-                    Naam= "Pittevils Roger",
-                    Adres = "Asweg 9",
-                    Postnummer= 8450,
-                    Woonplaats = "Oostende",
-                    Telefoonnummer= "0485999999",
-                    Email= "roger.pittevils@gmail.com",
-                    KlantStatus = KlantStatus.Verkoper,
-                    AutoId = 2
-               },
-                new Klant{
-                    Id = new Guid(),
-                    Naam= "Rogiers Bernard",
-                    Adres = "Koekoekstraat 12",
-                    Postnummer= 8630,
-                    Woonplaats = "Veurne",
-                    Telefoonnummer= "0478151214",
-                    Email= "bernard.rogiers@gmail.com",
-                    KlantStatus = KlantStatus.Verkoper,
-                    AutoId = 3
-               },
-                new Klant{
-                    Id = new Guid(),
-                    Naam= "Jansens Gert",
-                    Adres = "Klaverstraat 17",
-                    Postnummer= 8600,
-                    Woonplaats = "Diksmuide",
-                    Telefoonnummer= "0479756210",
-                    Email= "bernard.rogiers@gmail.com",
-                    KlantStatus = KlantStatus.Verkoper,
-                    AutoId = 4
-               },
-                new Klant{
-                    Id = new Guid(),
-                    Naam= "Peeters Piet",
-                    Adres = "Arsenaalstraat 6",
-                    Postnummer= 8620,
-                    Woonplaats = "Nieuwpoort",
-                    Telefoonnummer= "0478662478",
-                    Email= "piet.peeters@gmail.com",
-                    KlantStatus = KlantStatus.Koper,
-                    AutoId = 5
-               },
-                new Klant{
-                    Id = new Guid(),
-                    Naam= "Bomans Caroline",
-                    Adres = "Stuiverwijk 46",
-                    Postnummer= 8620,
-                    Woonplaats = "Nieuwpoort",
-                    Telefoonnummer= "0499184768",
-                    Email= "caroline.bomans@gmail.com",
-                    KlantStatus = KlantStatus.Koper,
-                    AutoId = 6,
+                {
+                    new Klant{
+                        Id = new Guid(),
+                        Naam= "Pauwels Paul",
+                        Adres = "Doornstraat",
+                        Postnummer= 8670,
+                        Woonplaats = "Oostduinkerke",
+                        Telefoonnummer= "058594566",
+                        Email= "paul.pauwels@gmail.com",
+                        KlantStatus = KlantStatus.Verkoper,
+                        AutoId = 1
+                   },
+                    new Klant{
+                        Id = new Guid(),
+                        Naam= "Pittevils Roger",
+                        Adres = "Asweg 9",
+                        Postnummer= 8450,
+                        Woonplaats = "Oostende",
+                        Telefoonnummer= "0485999999",
+                        Email= "roger.pittevils@gmail.com",
+                        KlantStatus = KlantStatus.Verkoper,
+                        AutoId = 2
+                   },
+                    new Klant{
+                        Id = new Guid(),
+                        Naam= "Rogiers Bernard",
+                        Adres = "Koekoekstraat 12",
+                        Postnummer= 8630,
+                        Woonplaats = "Veurne",
+                        Telefoonnummer= "0478151214",
+                        Email= "bernard.rogiers@gmail.com",
+                        KlantStatus = KlantStatus.Verkoper,
+                        AutoId = 3
+                   },
+                    new Klant{
+                        Id = new Guid(),
+                        Naam= "Jansens Gert",
+                        Adres = "Klaverstraat 17",
+                        Postnummer= 8600,
+                        Woonplaats = "Diksmuide",
+                        Telefoonnummer= "0479756210",
+                        Email= "bernard.rogiers@gmail.com",
+                        KlantStatus = KlantStatus.Verkoper,
+                        AutoId = 4
+                   },
+                    new Klant{
+                        Id = new Guid(),
+                        Naam= "Peeters Piet",
+                        Adres = "Arsenaalstraat 6",
+                        Postnummer= 8620,
+                        Woonplaats = "Nieuwpoort",
+                        Telefoonnummer= "0478662478",
+                        Email= "piet.peeters@gmail.com",
+                        KlantStatus = KlantStatus.Koper,
+                        AutoId = 5
+                   },
+                    new Klant{
+                        Id = new Guid(),
+                        Naam= "Bomans Caroline",
+                        Adres = "Stuiverwijk 46",
+                        Postnummer= 8620,
+                        Woonplaats = "Nieuwpoort",
+                        Telefoonnummer= "0499184768",
+                        Email= "caroline.bomans@gmail.com",
+                        KlantStatus = KlantStatus.Koper,
+                        AutoId = 6,
 
-               },
+                   },
 
-            };
+                };
                 connection.InsertOrReplaceAll(klanten);
 
                 var werkurenlijst = new List<WerkUren>
-            {
-                new WerkUren{
-                    WerkId = 5,
-                    Datum= new DateTime(2018,01,19),
-                    BeginTijd = new TimeSpan(8,0,0),
-                    EindTijd = new TimeSpan(8,30,0),
-                    Aankoop = 0M,
-                    Verkoop = 0M,
-                    Waarde = 0M,
-                    GewerkteTijd = new TimeSpan(0,30,0),
-                    Toelichting = "Aanbod Pauwels, Peugeot 308",
-                    AutoId = 1
-               },
-                new WerkUren{
-                    WerkId = 4,
-                    Datum= new DateTime(2018,01,14),
-                    BeginTijd = new TimeSpan(10,30,0),
-                    EindTijd = new TimeSpan(12,0,0),
-                    Aankoop = 0M,
-                    Verkoop = 0M,
-                    Waarde = 0M,
-                    GewerkteTijd = new TimeSpan(1,30,0),
-                    Toelichting = "Aanbod Pittevils, Audi A1",
-                    AutoId = 2
-               },
-                 new WerkUren{
-                    WerkId = 1,
-                    Datum= new DateTime(2018,01,04),
-                    BeginTijd = new TimeSpan(14,0,0),
-                    EindTijd = new TimeSpan(16,30,0),
-                    Aankoop = 0M,
-                    Verkoop = 0M,
-                    Waarde = 0M,
-                    GewerkteTijd = new TimeSpan(2,30,0),
-                    Toelichting = "Aanbod Rogiers, BMW 3Reeks",
-                    AutoId = 3,
-               },
-                  new WerkUren{
-                    WerkId = 0,
-                    Datum= new DateTime(2018,01,04),
-                    BeginTijd = new TimeSpan(9,0,0),
-                    EindTijd = new TimeSpan(11,30,0),
-                    Aankoop = 10000M,
-                    Verkoop = 0M,
-                    Waarde = -10000M,
-                    GewerkteTijd = new TimeSpan(2,30,0),
-                    Toelichting = "Koop Janssens Gert, Citroën C4",
-                    AutoId = 4
-               },
-                   new WerkUren{
-                    WerkId = 3,
-                    Datum= new DateTime(2018,01,8),
-                    BeginTijd = new TimeSpan(15,0,0),
-                    EindTijd = new TimeSpan(17,30,0),
-                    Aankoop = 14500M,
-                    Verkoop = 18000M,
-                    Waarde = 3500M,
-                    GewerkteTijd = new TimeSpan(2,30,0),
-                    Toelichting = "Aanbod Peeters Piet, Ford B-Max",
-                    AutoId = 5
-               },
+                {
                     new WerkUren{
-                    WerkId = 2,
-                    Datum= new DateTime(2018,01,7),
-                    BeginTijd = new TimeSpan(8,0,0),
-                    EindTijd = new TimeSpan(8,30,0),
-                    Aankoop = 0M,
-                    Verkoop = 0M,
-                    Waarde = 0M,
-                    GewerkteTijd = new TimeSpan(0,30,0),
-                    Toelichting = "Vraag van Bomans, Opel Corsa",
-                     AutoId = 6
-               },
+                        WerkId = 5,
+                        Datum= new DateTime(2018,01,19),
+                        BeginTijd = new TimeSpan(8,0,0),
+                        EindTijd = new TimeSpan(8,30,0),
+                        Aankoop = 0M,
+                        Verkoop = 0M,
+                        Waarde = 0M,
+                        GewerkteTijd = new TimeSpan(0,30,0),
+                        Toelichting = "Aanbod Pauwels, Peugeot 308",
+                        AutoId = 1
+                   },
                     new WerkUren{
-                    WerkId = 6,
-                    Datum= new DateTime(2018,01,19),
-                    BeginTijd = new TimeSpan(15,0,0),
-                    EindTijd = new TimeSpan(17,30,0),
-                    Aankoop = 30000M,
-                    Verkoop = 38000M,
-                    Waarde = 8000M,
-                    GewerkteTijd = new TimeSpan(2,30,0),
-                    Toelichting = "Verkoop Goudezeune, Audi A6",
-                     AutoId = 7
-               },
-            };
+                        WerkId = 4,
+                        Datum= new DateTime(2018,01,14),
+                        BeginTijd = new TimeSpan(10,30,0),
+                        EindTijd = new TimeSpan(12,0,0),
+                        Aankoop = 0M,
+                        Verkoop = 0M,
+                        Waarde = 0M,
+                        GewerkteTijd = new TimeSpan(1,30,0),
+                        Toelichting = "Aanbod Pittevils, Audi A1",
+                        AutoId = 2
+                   },
+                     new WerkUren{
+                        WerkId = 1,
+                        Datum= new DateTime(2018,01,04),
+                        BeginTijd = new TimeSpan(14,0,0),
+                        EindTijd = new TimeSpan(16,30,0),
+                        Aankoop = 0M,
+                        Verkoop = 0M,
+                        Waarde = 0M,
+                        GewerkteTijd = new TimeSpan(2,30,0),
+                        Toelichting = "Aanbod Rogiers, BMW 3Reeks",
+                        AutoId = 3,
+                   },
+                      new WerkUren{
+                        WerkId = 0,
+                        Datum= new DateTime(2018,01,04),
+                        BeginTijd = new TimeSpan(9,0,0),
+                        EindTijd = new TimeSpan(11,30,0),
+                        Aankoop = 10000M,
+                        Verkoop = 0M,
+                        Waarde = -10000M,
+                        GewerkteTijd = new TimeSpan(2,30,0),
+                        Toelichting = "Koop Janssens Gert, Citroën C4",
+                        AutoId = 4
+                   },
+                       new WerkUren{
+                        WerkId = 3,
+                        Datum= new DateTime(2018,01,8),
+                        BeginTijd = new TimeSpan(15,0,0),
+                        EindTijd = new TimeSpan(17,30,0),
+                        Aankoop = 14500M,
+                        Verkoop = 18000M,
+                        Waarde = 3500M,
+                        GewerkteTijd = new TimeSpan(2,30,0),
+                        Toelichting = "Aanbod Peeters Piet, Ford B-Max",
+                        AutoId = 5
+                   },
+                        new WerkUren{
+                        WerkId = 2,
+                        Datum= new DateTime(2018,01,7),
+                        BeginTijd = new TimeSpan(8,0,0),
+                        EindTijd = new TimeSpan(8,30,0),
+                        Aankoop = 0M,
+                        Verkoop = 0M,
+                        Waarde = 0M,
+                        GewerkteTijd = new TimeSpan(0,30,0),
+                        Toelichting = "Vraag van Bomans, Opel Corsa",
+                         AutoId = 6
+                   },
+                        new WerkUren{
+                        WerkId = 6,
+                        Datum= new DateTime(2018,01,19),
+                        BeginTijd = new TimeSpan(15,0,0),
+                        EindTijd = new TimeSpan(17,30,0),
+                        Aankoop = 30000M,
+                        Verkoop = 38000M,
+                        Waarde = 8000M,
+                        GewerkteTijd = new TimeSpan(2,30,0),
+                        Toelichting = "Verkoop Goudezeune, Audi A6",
+                         AutoId = 7
+                   },
+                };
                 connection.InsertOrReplaceAll(werkurenlijst);
 
-            }
+            //}
         }
     }
 }
