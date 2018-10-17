@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.B4.EE.DellobelI" android:installLocation="preferExternal">
-	<uses-sdk android:targetSdkVersion="23" />
+	<uses-sdk android:targetSdkVersion="25" android:minSdkVersion="23" />
 	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 	<uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION" />
@@ -11,6 +11,6 @@
 	<uses-permission android:name="android.permission.CAMERA" />
 	<uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL" />
 	<application android:label="JIKAN" android:icon="@drawable/icon">
-		<meta-data android:name="com.google.android.maps.v2.API_KEY" android:value="AIzaSyBRPcHSPeVQfYYB5RdY4-pC9aLUeaApylY" />
+	
 	</application>
 </manifest>

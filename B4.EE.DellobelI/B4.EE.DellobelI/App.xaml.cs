@@ -13,6 +13,9 @@ namespace B4.EE.DellobelI
 		{
 			InitializeComponent();
 
+            //Dankzij de abstracte interfaces kunnen de services vanaf één centrale plaats worden geregistreerd met een IOC container.
+            //Deze worden geïnjecteerd in de constructors.
+
             FreshIOC.Container.Register<IKlantenService>(new KlantenInMemoryService());
             FreshIOC.Container.Register<IVoertuigenService>(new VoertuigenInMemoryService());
             FreshIOC.Container.Register<IUrenService>(new UrenInMemoryService());

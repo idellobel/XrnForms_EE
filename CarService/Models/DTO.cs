@@ -10,6 +10,7 @@ namespace CarService.Models
         public int Id { get; set; }
         public string ModelNaam { get; set; }
         public string MerkName { get; set; }
+        public decimal Prijs { get; set; }
     }
 
     public class CarModelDetailDTO
